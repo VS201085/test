@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My First Site</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>Hello 👋</h1>
+    <p id="subtitle">This is my first site.</p>
+
+    <button id="btn">Click me</button>
+
+    <footer>
+      <small>Made by me</small>
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById("btn");
+    const subtitle = document.getElementById("subtitle");
+
+    btn.addEventListener("click", () => {
+      const now = new Date();
+      subtitle.textContent = "Clicked at: " + now.toLocaleString();
+    });
+  </script>
+</body>
+</html>
