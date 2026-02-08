@@ -3,28 +3,140 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hi, I'm Valentina</title>
+  <title>My Site</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <main class="card">
-    <h1>Hello 👋</h1>
-    <p id="subtitle">Wellcome to my site</p>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">✨ MySite</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <button id="btn">Click me</button>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Hi, I’m Valentina 👋</h1>
+        <p class="lead">
+          I build simple, clean websites. This one is made with HTML, CSS, and a tiny bit of JavaScript.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Contact me</a>
+          <a class="btn" href="#projects">See projects</a>
+        </div>
 
-    <footer>
-      <small>Made by me</small>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num" id="days">—</div>
+            <div class="stat-label">days learning</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label">site published</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">ideas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="code-title">Quick note</div>
+        <p class="code">
+          Click the button to update the timestamp.
+        </p>
+        <button class="btn primary" id="btn">Update time</button>
+        <p class="muted" id="subtitle">Not clicked yet.</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>
+        I prefer practical projects: publish first, improve later.
+      </p>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>First site</h3>
+          <p>HTML + CSS + JS. Published with GitHub Pages.</p>
+        </article>
+        <article class="card">
+          <h3>Next: Landing page</h3>
+          <p>Better layout, sections, and a contact form.</p>
+        </article>
+        <article class="card">
+          <h3>Next: Small app</h3>
+          <p>A tiny CRUD app with login (later).</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <form class="form" id="contactForm">
+        <label>
+          Your name
+          <input name="name" placeholder="Jane" required minlength="2" />
+        </label>
+
+        <label>
+          Email
+          <input name="email" type="email" placeholder="sargsyanv@gmail.com" required />
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="5" placeholder="Hi! I’d like a simple site…" required minlength="10"></textarea>
+        </label>
+
+        <button class="btn primary" type="submit">Send</button>
+        <p class="muted" id="formMsg"></p>
+      </form>
+
+      <p class="small muted">
+        Note: this form doesn’t email yet — next step we’ll connect it.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> MySite</span>
+      <span class="muted">Built with patience</span>
     </footer>
   </main>
 
   <script>
+    // hero button
     const btn = document.getElementById("btn");
     const subtitle = document.getElementById("subtitle");
-
     btn.addEventListener("click", () => {
-      const now = new Date();
-      subtitle.textContent = "Clicked at: " + now.toLocaleString();
+      subtitle.textContent = "Updated at: " + new Date().toLocaleString();
+    });
+
+    // footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // "days learning" (change the start date)
+    const start = new Date("2026-02-01"); // <-- change this
+    const days = Math.max(1, Math.ceil((Date.now() - start.getTime()) / (1000 * 60 * 60 * 24)));
+    document.getElementById("days").textContent = String(days);
+
+    // fake form submit (no backend yet)
+    const form = document.getElementById("contactForm");
+    const msg = document.getElementById("formMsg");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      msg.textContent = "Saved locally (demo). Next we’ll connect real email sending.";
+      form.reset();
     });
   </script>
 </body>
